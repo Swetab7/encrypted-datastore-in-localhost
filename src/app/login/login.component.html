@@ -1,18 +1,31 @@
+<H3>Login Here</H3>
 <div class="container">
   <div class="row">
-    <form>
+    <form (ngSubmit)="formLogin(f)" #f="ngForm">
 
-      <div class="form-group">
-        <label for="exampleInputEmail1">UserName</label>
-        <input type="email" class="form-control" placeholder="UserName">
+          <div class="form-group">
+          <label for="exampleInputEmail1">UserName</label>
+          <input type="Text" class="form-control" placeholder="UserName" 
+          name="username" ngModel required #uname="ngModel">
+          <div *ngIf="uname.touched">
+            <span class="help-block" *ngIf="!uname.valid">Required Feild</span>
+          </div> 
         </div>
 
-      <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" placeholder="Password">
-      </div>
+          <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" placeholder="Password" 
+          name="password" ngModel required #pass="ngModel">
+          <div *ngIf="pass.touched">
+            <span class="help-block" *ngIf="!pass.valid">Required Feild</span>
+          </div>
+         </div>
 
-      <button type="submit" class="btn btn-primary">Submit</button>
+         
+        <button type="submit" 
+        class="btn btn-primary"
+        [disabled]="!f.valid">Submit
+        </button>
     </form>
-  </div>
+   </div>
 </div>

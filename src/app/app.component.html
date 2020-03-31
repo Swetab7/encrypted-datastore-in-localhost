@@ -1,9 +1,12 @@
 <nav class="navbar navbar-inverse">
-   <p class="navbar-text">User</p>
+   <p class="navbar-text"><a  *ngIf="auth.isLoggedIn()" routerLink="/userhome">UserHome</a></p>
   <ul class="nav navbar-nav">
-    <li><a  routerLink="/login">Login</a></li>
-    <li><a  routerLink="/signup">Signup</a></li>
+    <li><a  *ngIf="!auth.isLoggedIn()" routerLink="/login">Login</a></li>
+    <li><a  *ngIf="!auth.isLoggedIn()" routerLink="/signup">Signup</a></li>
   </ul>
+
+  <button class="btn btn-success " type="submit" *ngIf="auth.isLoggedIn()" (click)="auth.logout()" >Logout</button>
  
 </nav>
+<a  *ngIf="auth.isLoggedIn()" routerLink="/userlist">UserList</a>
 <router-outlet></router-outlet>

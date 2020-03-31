@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../user.model';
+import { Loginuser } from '../loginuser.model';
 import { UserserviceService } from '../userservice.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-userlist',
@@ -9,7 +10,7 @@ import { UserserviceService } from '../userservice.service';
 })
 export class UserlistComponent implements OnInit {
 
-  UserList:User[];
+  UserList:Loginuser[];
   constructor(private userservice:UserserviceService) { }
   
   ngOnInit() {
@@ -17,7 +18,7 @@ export class UserlistComponent implements OnInit {
     this.UserList = this.userservice.getUsers();
     this.userservice.usersChanged
       .subscribe(
-        (users: User[]) => {
+        (users: Loginuser[]) => {
           this.UserList = users;
         }
       );

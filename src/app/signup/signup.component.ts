@@ -11,6 +11,7 @@ export class SignupComponent implements OnInit {
 
   @ViewChild('f',{static: false}) signupForm:NgForm;
   
+  
 
   constructor(private userservice:UserserviceService) { 
     
@@ -29,12 +30,21 @@ export class SignupComponent implements OnInit {
     const email=value.email;
     const username=value.username;
     const password=value.password;
+    const cPassword=value.confirmPassword;
 
+    console.log(password);
+    console.log(cPassword);
+ 
     const SignupUser= new User(name,email,username,password);
     this.userservice.addUser(SignupUser);
-    
+    this.signupForm.reset();
 
   }
+
+
+
+
+
   // onAddItem() {
   //   const ingName = this.nameInputRef.nativeElement.value;
   //   const ingAmount = this.amountInputRef.nativeElement.value;
