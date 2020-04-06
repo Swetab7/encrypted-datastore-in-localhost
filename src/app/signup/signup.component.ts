@@ -1,6 +1,6 @@
 import { Component, OnInit,ViewChild,ElementRef } from '@angular/core';
-import { UserserviceService } from '../userservice.service';
-import { User } from '../user.model';
+import { UserserviceService } from '../services/userservice.service';
+import { User } from '../models/user.model';
 import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-signup',
@@ -10,46 +10,36 @@ import { NgForm } from '@angular/forms';
 export class SignupComponent implements OnInit {
 
   @ViewChild('f',{static: false}) signupForm:NgForm;
-  
-  
 
   constructor(private userservice:UserserviceService) { 
     
   }
 
   ngOnInit() {
+    
   }
-
-  // formSubmit(form:NgForm){
-  //   console.log(form);
-  // }
 
   formSubmit(signupForm:NgForm){
-    const value=this.signupForm.value;
-    const name=value.name;
-    const email=value.email;
-    const username=value.username;
-    const password=value.password;
-    const cPassword=value.confirmPassword;
+    
+    const params = {
+      registration: { ...signupForm.value }
+     };
+     this.userservice.signup(params).subscribe((res: any) => {
+     this.userservice.setLocal(res);
 
-    console.log(password);
-    console.log(cPassword);
- 
-    const SignupUser= new User(name,email,username,password);
-    this.userservice.addUser(SignupUser);
+     console.log(res.data);
+      });
+
+    // const value=this.signupForm.value;
+    // const fname=value.first_name;
+    // const lname=value.lname;
+    // const email=value.email;
+    // const password=value.password;
+    // const cpassword=value.confirmPassword;
+    // const SignupUser= new User(fname,lname,email,password,cpassword);
+    // this.userservice.addUser(SignupUser);
     this.signupForm.reset();
-
   }
 
-
-
-
-
-  // onAddItem() {
-  //   const ingName = this.nameInputRef.nativeElement.value;
-  //   const ingAmount = this.amountInputRef.nativeElement.value;
-  //   const newIngredient = new Ingredient(ingName, ingAmount);
-  //   this.slService.addIngredient(newIngredient);
-  // }
-
+  
 }

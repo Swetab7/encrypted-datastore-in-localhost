@@ -1,18 +1,28 @@
-<!-- <a routerLink="/userlist">UserList</a> -->
 <h3>Signup Here</h3>
 
 <div class="container">
   <div class="row">
     <form (ngSubmit)="f.form.valid && formSubmit(f)" #f="ngForm"
-     [appMatchPassword]="['password', 'confirmPassword']" novalidate>
+     [appMatchPassword]="['password', 'password_confirmation']" novalidate>
 
          <div class="form-group">
-          <label for="formGroupExampleInput">Name</label>
-          <input type="text" class="form-control" placeholder="Name"
-           name="name" ngModel required #name="ngModel">
-           <div *ngIf="name.touched">
-           <span class="help-block" *ngIf="!name.valid">Name is Required Feild</span>
+          <label for="formGroupExampleInput">First Name</label>
+          <input type="text" class="form-control" placeholder="First Name"
+           name="first_name" ngModel required #first_name="ngModel">
+           <div *ngIf="first_name.touched">
+           <span class="help-block" *ngIf="!first_name.valid">Name is Required Feild</span>
            </div>
+        </div>
+
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">Last Name</label>
+          <input type="Text" class="form-control" placeholder="Last Name" 
+          name="last_name" ngModel required #last_name="ngModel">
+          <div *ngIf="last_name.touched">
+            <span class="help-block" *ngIf="!last_name.valid">Required Feild</span>
+          </div>
+          
         </div>
 
          <div class="form-group">
@@ -26,15 +36,6 @@
 
         </div>
 
-        <div class="form-group">
-          <label for="exampleInputEmail1">Create UserName</label>
-          <input type="Text" class="form-control" placeholder="UserName" 
-          name="username" ngModel required #uname="ngModel">
-          <div *ngIf="uname.touched">
-            <span class="help-block" *ngIf="!uname.valid">Required Feild</span>
-          </div>
-          
-        </div>
 
         <div class="form-group">
           <label for="exampleInputPassword1">Password</label>
@@ -49,11 +50,11 @@
          <div class="form-group">
           <label for="exampleInputPassword1">Confirm Password</label>
           <input type="password" class="form-control" placeholder="Confirm Password"
-           name="confirmPassword" ngModel required #confirmPassword="ngModel">
-           <div *ngIf="confirmPassword.touched">
-            <span class="help-block" *ngIf="confirmPassword.errors?.required">Required Feild</span>
+           name="password_confirmation" ngModel required #password_confirmation="ngModel">
+           <div *ngIf="password_confirmation.touched">
+            <span class="help-block" *ngIf="password_confirmation.errors?.required">Required Feild</span>
             <span class="help-block" 
-            *ngIf="confirmPassword.errors?.passwordMismatch">Password doesn't match</span>
+            *ngIf="password_confirmation.errors?.passwordMismatch">Password doesn't match</span>
           </div>
            
         </div>
