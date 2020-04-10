@@ -22,4 +22,22 @@ export class HttpService {
     // body = {"user": {"email": "test@yopmail.com", "password": "asdasd"}}
     return this.HttpClient.post(url,body);
   }
+
+  updateUser(body: object = {}): Observable<any> {
+
+    const url ='http://139.59.55.24/api/v1/users/update_profile';
+    return this.HttpClient.patch(url,body);
+  }
+
+
+  //   patch(path: string, body: object = {}): Observable<any> {
+  //   const url = `${environment.url}${path}`;
+  //   return this._http
+  //     .patch(url, this._utilsService.transformToSnakeCase(body), { observe: 'response' })
+  //     .pipe(
+  //       map(res => this.toastrMessage(res)),
+  //       catchError(this.formatErrors.bind(this))
+  //     );
+  // }
+
 }

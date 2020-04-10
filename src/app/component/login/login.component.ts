@@ -1,10 +1,10 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 
-import { Loginuser } from '../models/loginuser.model';
-import { UserserviceService } from '../services/userservice.service';
-import { HttpService } from '../services/http.service';
+// import { Loginuser } from 'src/app/models/loginuser.model';
+import { UserserviceService } from 'src/app/services/userservice.service';
+import { HttpService } from 'src/app/services/http.service';
 import { NgForm } from '@angular/forms';
-import { AuthService} from '../services/auth.service';
+import { AuthService} from 'src/app/services/auth.service';
 import { Router} from '@angular/router';
 
 @Component({
@@ -13,15 +13,20 @@ import { Router} from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
 	 @ViewChild('f',{static: false}) loginForm:NgForm;
-   Users:Loginuser[];
+   
    error=null;
+   private token;
   constructor(private userservice:UserserviceService,
     private auth:AuthService,
     private myRoute:Router,
     private httpService:HttpService) { }
 	
-  ngOnInit() {}
+  ngOnInit() {
+
+
+  }
 
   formLogin(loginForm:NgForm){
 
@@ -29,15 +34,28 @@ export class LoginComponent implements OnInit {
       user: { ...loginForm.value }
      };
      this.userservice.login(params).subscribe(res => {
-     this.userservice.setLocal(res);
+      // console.log(res.data.response.user);
+      
+      this.token=res.data.response.token;
+      this.auth.sendToken(this.token);
+      this.myRoute.navigate(['userhome']);
+
+      let resUser=res.data.response.user;
+      // console.log(resUser);
+      this.userservice.getUser(resUser);
+      
     }, error => {
         this.error=error.error.errors;
     });
-    if(this.loginForm.valid && this.error!=null){
-     this.auth.sendToken("LoggedIn")
-     this.myRoute.navigate(['userhome'])
-     alert("you are login sussecfully")
-     }
-     this.loginForm.reset();
+
+    if(this.loginForm.valid && this.error == null ){
+    alert("you are login sussecfully");       
+      this.loginForm.reset();
+
+    }  
+   
   }
+
+  
+
 }

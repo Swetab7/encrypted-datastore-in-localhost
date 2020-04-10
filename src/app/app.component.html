@@ -8,5 +8,4 @@
   <button class="btn btn-success " type="submit" *ngIf="auth.isLoggedIn()" (click)="auth.logout()" >Logout</button>
  
 </nav>
-<a  *ngIf="auth.isLoggedIn()" routerLink="/userlist">UserList</a>
 <router-outlet></router-outlet>
