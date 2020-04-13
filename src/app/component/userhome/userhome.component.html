@@ -1,19 +1,22 @@
 <div class="container">
   <div class="row" >
         <div class="col-md-3 img">
-          <img src="https://previews.123rf.com/images/martialred/martialred1608/martialred160800018/61263271-user-account-profile-circle-flat-icon-for-apps-and-websites.jpg" 
-           alt="image not uploaded" class="img-rounded" height="200px" width="200px">
+          <img src="{{imageUrl}}" 
+           alt="image not uploaded" 
+           class="img-rounded"
+           height="200px" 
+           width="200px">
         </div>
         <div class="col-md-3 details">
               <blockquote>
                 <h5>{{rUser.first_name}} {{rUser.last_name}}</h5>
                 <small><cite title="Source Title">
-                 <i class="icon-map-marker">{{rUser.email}}</i></cite>
+                <i class="icon-map-marker">{{rUser.email}}</i></cite>
                 </small>
-              </blockquote>
-              <p>
-               <button (click)="onEdit()" *ngIf="edit_btn" class="btn btn-primary">Edit</button>
-              </p>
+                </blockquote>
+                <p>
+                <button (click)="onEdit()" *ngIf="edit_btn" class="btn btn-primary">Edit</button>
+                </p>
         </div>
 
 
@@ -42,7 +45,10 @@
 
         <div class="form-group">
           <label for="exampleInputEmail1">Upload Image</label>
-          <input type="file" class="file-uploader" formControlName="image">
+          <input type="file" class="file-uploader" formControlName="image" 
+          accept=".png, .jpg, .jpeg"
+          #fileInput (change)="uploadFile($event)"
+          >
         </div>
 
         <button type="submit" 

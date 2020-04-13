@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
       user: { ...loginForm.value }
      };
      this.userservice.login(params).subscribe(res => {
-      // console.log(res.data.response.user);
+       console.log(res.data.response.user);
       
       this.token=res.data.response.token;
       this.auth.sendToken(this.token);
