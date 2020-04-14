@@ -11,7 +11,8 @@ export class UserserviceService {
  // usersChanged = new EventEmitter<User[]>();
  // userLoggedIn:Loginuser[]=[];
  private users:User[]=[];
- private cUser:Loginuser;
+ // private cUser:Loginuser;
+ private cUser;
 
  
   constructor(private http:HttpService) { }
@@ -29,9 +30,7 @@ export class UserserviceService {
   }
 
   getUser(resUser){
-    this.cUser =new Loginuser(resUser.id, resUser.first_name,resUser.last_name,
-      resUser.email,resUser.profile_picture);
-    console.log(this.cUser);
+    this.cUser =resUser;
   }
 
 

@@ -45,9 +45,8 @@
 
         <div class="form-group">
           <label for="exampleInputEmail1">Upload Image</label>
-          <input type="file" class="file-uploader" formControlName="image" 
-          accept=".png, .jpg, .jpeg"
-          #fileInput (change)="uploadFile($event)"
+          <input type="file" class="file-uploader" formControlName="profile_picture" 
+          accept=".png, .jpg, .jpeg" (change)="uploadFile($event)"
           >
         </div>
 

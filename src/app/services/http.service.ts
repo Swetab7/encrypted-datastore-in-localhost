@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-
+import { LocalstorageService } from 'src/app/services/localstorage.service';
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
 
-  
-  constructor(private HttpClient: HttpClient) { }
+ token = localStorage.getItem("LoggedInUser"); 
+ constructor(private HttpClient: HttpClient) { }
 
  postLogin(body: object = {}): Observable<any> {
     const url = 'http://139.59.55.24/api/v1/users/authenticate';
@@ -26,7 +26,7 @@ export class HttpService {
   updateUser(body: object = {}): Observable<any> {
 
     const url ='http://139.59.55.24/api/v1/users/update_profile';
-    return this.HttpClient.patch(url,body);
+    return this.HttpClient.patch(url,body,{ headers: new HttpHeaders().set('Authorization',"Bearer "+this.token)});
   }
 
 

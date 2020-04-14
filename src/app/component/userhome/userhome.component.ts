@@ -1,7 +1,7 @@
 import { Component, OnInit,ElementRef,ViewChild } from '@angular/core';
-import { UserserviceService } from 'src/app/services/userservice.service';
-import { Loginuser  } from 'src/app/models/loginuser.model';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
+
+import { UserserviceService } from 'src/app/services/userservice.service';
 
 @Component({
   selector: 'app-userhome',
@@ -9,30 +9,26 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
   styleUrls: ['./userhome.component.css']
 })
 export class UserhomeComponent implements OnInit {
-  
-
+ 
   constructor(private userservice:UserserviceService) { }
-  rUser:Loginuser;
+  rUser;
   edit_btn= true;
   updateForm:any;
   userId;
   error=null;
-   @ViewChild('fileInput',{static: false}) el: ElementRef;
   imageUrl: any = "https://previews.123rf.com/images/martialred/martialred1608/martialred160800018/61263271-user-account-profile-circle-flat-icon-for-apps-and-websites.jpg" ;
-  aUpdated = {
-    image: false
-  };
   file;
 
   ngOnInit() {
     this.rUser=this.userservice.currentUser();
     this.userId=this.rUser.id;
+    this.imageUrl= this.setUrl();
     console.log(this.rUser);
       this.updateForm=new FormGroup({
       first_name:new FormControl('',Validators.required),
       last_name:new FormControl('',Validators.required),
       email:new FormControl('',[Validators.required,Validators.email]),
-      image:new FormControl('',Validators.required),
+      profile_picture:new FormControl('',Validators.required),
     })
   
   }
@@ -52,6 +48,7 @@ export class UserhomeComponent implements OnInit {
 
   update(updateForm){
     const params ={user: { ...updateForm.value }};
+    params['user']['profile_picture'] = this.file
     this.userservice.updateUser(params).subscribe(res => {
       console.log(res);
     }), error => {
@@ -61,20 +58,27 @@ export class UserhomeComponent implements OnInit {
   }
 
   uploadFile(event){
-    this.aUpdated.image = true;
-    let reader = new FileReader(); // HTML5 FileReader API
+    let reader = new FileReader(); 
     this.file = event.target.files[0];
     if (event.target.files && event.target.files[0]) {
       reader.readAsDataURL(this.file);
-
-      // When file uploads set it to file formcontrol
+      // console.log(this.file);
       reader.onload = () => {
         this.imageUrl = reader.result;
       }
+
     }
   }
 
+  setUrl(){
+     let Url = this.rUser.profile_picture.url ? this.rUser.profile_picture.url:'https://previews.123rf.com/images/martialred/martialred1608/martialred160800018/61263271-user-account-profile-circle-flat-icon-for-apps-and-websites.jpg';
+      console.log(this.rUser.profile_picture.url)
+      console.log(this.imageUrl);
+      return(Url);
 
+    };
 
+    
+  
 
 }
