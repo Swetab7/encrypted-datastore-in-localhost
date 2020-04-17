@@ -8,7 +8,6 @@ import { LocalstorageService } from 'src/app/services/localstorage.service';
 })
 export class HttpService {
 
- token = localStorage.getItem("LoggedInUser"); 
  constructor(private HttpClient: HttpClient) { }
 
  postLogin(body: object = {}): Observable<any> {
@@ -26,18 +25,18 @@ export class HttpService {
   updateUser(body: object = {}): Observable<any> {
 
     const url ='http://139.59.55.24/api/v1/users/update_profile';
-    return this.HttpClient.patch(url,body,{ headers: new HttpHeaders().set('Authorization',"Bearer "+this.token)});
+    return this.HttpClient.patch(url,body,{ headers: new HttpHeaders().set('Authorization',"Bearer "+localStorage.getItem("LoggedInUser"))});
   }
 
+  getDivision():Observable<any> 
+  {
+    const url = 'http://139.59.55.24/api/v1/divisions';
+    return this.HttpClient.get(url);
+  }
 
-  //   patch(path: string, body: object = {}): Observable<any> {
-  //   const url = `${environment.url}${path}`;
-  //   return this._http
-  //     .patch(url, this._utilsService.transformToSnakeCase(body), { observe: 'response' })
-  //     .pipe(
-  //       map(res => this.toastrMessage(res)),
-  //       catchError(this.formatErrors.bind(this))
-  //     );
-  // }
-
+  getCategory():Observable<any> 
+  {
+    const url='http://139.59.55.24/api/v1/categories';
+    return this.HttpClient.get(url,{ headers: new HttpHeaders().set('Authorization',"Bearer "+localStorage.getItem("LoggedInUser"))});
+  }
 }

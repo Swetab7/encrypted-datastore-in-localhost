@@ -1,0 +1,73 @@
+<div class="container" *ngIf="!auth.isLoggedIn()">
+  <div class="row">
+    <div class="col-md-3 bg-info" style="height: 40px;" >
+      <span class=" text-primary" style="font-size: 20px;">Please Login</span>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="auth.isLoggedIn()">
+  <div class="row">
+    <div class="col-md-3 bg-info" style="height: 40px;" >
+      <span class=" text-primary" style="font-size: 20px;">Select a Division</span>
+    </div>
+    <div class="col-md-3" *ngFor="let division of divisions;let i = index">
+      <label class="checkbox-inline" for="{{division.id}}">
+           <input type="radio" [id]="division.id"
+           [value]="division.name" name="radio-group"
+           [checked]="i === 0" [(ngModel)]="selected_Division" />
+           {{ division.description }}</label> 
+    </div>
+    <button class="btn btn-primary" (click)="setDivision()">ok</button>
+  </div>
+</div>
+
+<!-- categery -->
+<div class="container" *ngIf="division_clicked">
+<div class="row">
+
+  <div class="col-sm-4" *ngFor="let category of categories">
+    <div class="card">
+      <img src="{{category.image?.avatar?.url || 'https://previews.123rf.com/images/martialred/martialred1608/martialred160800018/61263271-user-account-profile-circle-flat-icon-for-apps-and-websites.jpg'}}"
+       class="card-img-top" alt="..."
+      class="image" >
+        <div class="card-body">
+          <h5 class="card-title">Special title treatment</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+  </div>
+
+  <!-- <div class="col-sm-4">
+    <div class="card">
+      <img src="https://image.freepik.com/free-photo/two-beautiful-women-shopping-town_1303-16426.jpg" class="card-img-top" alt="..."
+      class="image">
+        <div class="card-body">
+          <h5 class="card-title">Special title treatment</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="card">
+      <img src="https://image.freepik.com/free-photo/two-beautiful-women-shopping-town_1303-16426.jpg" class="card-img-top" alt="..."
+      class="image">
+        <div class="card-body">
+          <h5 class="card-title">Special title treatment</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+  </div>
+ -->
+</div>
+</div>
+
+
+
+
+
+<!-- "https://image.freepik.com/free-photo/two-beautiful-women-shopping-town_1303-16426.jpg" alt="Chicago" style="width:100%;height: 400px;"> -->

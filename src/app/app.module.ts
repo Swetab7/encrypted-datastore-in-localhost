@@ -5,16 +5,16 @@ import { RouterModule,Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 import { HttpClientModule} from '@angular/common/http';
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './component/login/login.component';
-import { SignupComponent } from './component/signup/signup.component';
-import { UserhomeComponent } from './component/userhome/userhome.component';
+import { LoginComponent } from './component/user/login/login.component';
+import { SignupComponent } from './component/user/signup/signup.component';
+import { UserhomeComponent } from './component/user/userhome/userhome.component';
 import { MatchPasswordDirective } from './directives/match-password.directive';
-
-
-
+import { HeaderComponent } from './component/shared/header/header.component';
+import { FooterComponent } from './component/shared/footer/footer.component';
+import { HomeComponent } from './component/shared/home/home.component';
+import { DashboardComponent } from './component/shared/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,10 @@ import { MatchPasswordDirective } from './directives/match-password.directive';
     SignupComponent,
     UserhomeComponent,
     MatchPasswordDirective,
-   
+    HeaderComponent,
+    FooterComponent,
+    HomeComponent,
+    DashboardComponent,   
   ],
   imports: [
     BrowserModule,
@@ -35,6 +38,7 @@ import { MatchPasswordDirective } from './directives/match-password.directive';
     
   ],
   providers: [AuthGuard],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
 })
 export class AppModule { }

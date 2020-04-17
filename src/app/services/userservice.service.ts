@@ -28,11 +28,9 @@ export class UserserviceService {
   updateUser(params){
     return this.http.updateUser(params);
   }
-
   getUser(resUser){
     this.cUser =resUser;
   }
-
 
   currentUser(){
     return (this.cUser);

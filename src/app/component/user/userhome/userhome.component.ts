@@ -2,6 +2,7 @@ import { Component, OnInit,ElementRef,ViewChild } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 import { UserserviceService } from 'src/app/services/userservice.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-userhome',
@@ -10,21 +11,20 @@ import { UserserviceService } from 'src/app/services/userservice.service';
 })
 export class UserhomeComponent implements OnInit {
  
-  constructor(private userservice:UserserviceService) { }
+  constructor(private userservice:UserserviceService,private auth:AuthService) { }
   rUser;
   edit_btn= true;
   updateForm:any;
-  userId;
   error=null;
   imageUrl: any = "https://previews.123rf.com/images/martialred/martialred1608/martialred160800018/61263271-user-account-profile-circle-flat-icon-for-apps-and-websites.jpg" ;
   file;
 
   ngOnInit() {
     this.rUser=this.userservice.currentUser();
-    this.userId=this.rUser.id;
+    
     this.imageUrl= this.setUrl();
-    console.log(this.rUser);
-      this.updateForm=new FormGroup({
+    // console.log(this.rUser);
+    this.updateForm=new FormGroup({
       first_name:new FormControl('',Validators.required),
       last_name:new FormControl('',Validators.required),
       email:new FormControl('',[Validators.required,Validators.email]),
@@ -47,9 +47,13 @@ export class UserhomeComponent implements OnInit {
   }
 
   update(updateForm){
-    const params ={user: { ...updateForm.value }};
-    params['user']['profile_picture'] = this.file
-    this.userservice.updateUser(params).subscribe(res => {
+    const formData = new FormData();
+    formData.append('user[first_name]',this.updateForm.get('first_name').value);
+    formData.append('user[last_name]',this.updateForm.get('last_name').value);
+    formData.append('user[email]',this.updateForm.get('email').value);
+    formData.append('user[profile_picture]', this.file);
+    
+    this.userservice.updateUser(formData).subscribe(res => {
       console.log(res);
     }), error => {
         this.error=error;
@@ -62,7 +66,7 @@ export class UserhomeComponent implements OnInit {
     this.file = event.target.files[0];
     if (event.target.files && event.target.files[0]) {
       reader.readAsDataURL(this.file);
-      // console.log(this.file);
+      console.log(this.file);
       reader.onload = () => {
         this.imageUrl = reader.result;
       }
@@ -71,11 +75,9 @@ export class UserhomeComponent implements OnInit {
   }
 
   setUrl(){
-     let Url = this.rUser.profile_picture.url ? this.rUser.profile_picture.url:'https://previews.123rf.com/images/martialred/martialred1608/martialred160800018/61263271-user-account-profile-circle-flat-icon-for-apps-and-websites.jpg';
-      console.log(this.rUser.profile_picture.url)
-      console.log(this.imageUrl);
+     let Url = this.rUser.profile_picture.url ? this.rUser.profile_picture.url:
+     'https://previews.123rf.com/images/martialred/martialred1608/martialred160800018/61263271-user-account-profile-circle-flat-icon-for-apps-and-websites.jpg';
       return(Url);
-
     };
 
     

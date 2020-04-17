@@ -8,8 +8,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'user';
+  title = 'shop';
    constructor(private auth:AuthService,private router:Router){
-   	this.router.navigate(["login"]);
+   	if(this.auth.isLoggedIn()){
+   	this.router.navigate(["userhome"]);
+   }
+   else{
+   	this.router.navigate(["home"]);
+   }
   }
 }
+
+ // if(this.auth.isLoggedIn()){
+       
+ //        // alert("you are login sussecfully")
+ //        return true;
+ //      }else{
+ //        // alert("Please Login")
+ //        this.myRoute.navigate(["login"]);
+ //        return false;
+ //      }

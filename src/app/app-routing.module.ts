@@ -2,16 +2,23 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 
-import { LoginComponent } from './component/login/login.component';
-import { SignupComponent } from './component/signup/signup.component';
-import { UserhomeComponent } from './component/userhome/userhome.component';
-
+import { LoginComponent } from './component/user/login/login.component';
+import { SignupComponent } from './component/user/signup/signup.component';
+import { UserhomeComponent } from './component/user/userhome/userhome.component';
+import { HeaderComponent } from './component/shared/header/header.component';
+import { FooterComponent } from './component/shared/footer/footer.component';
+import { HomeComponent } from './component/shared/home/home.component';
+import { DashboardComponent } from './component/shared/dashboard/dashboard.component';
 
 
 const routes: Routes = [
-						{path: 'login', component: LoginComponent },
-						{path: 'signup', component: SignupComponent},
-						{path: 'userhome', component:  UserhomeComponent,canActivate:[AuthGuard]}
+  {path:'home',component:HomeComponent},
+  {path: 'header',component:HeaderComponent},
+  {path:'dashboard',component:DashboardComponent},
+  {path:'login',component: LoginComponent },
+  {path:'signup',component: SignupComponent},
+  {path:'userhome',component:UserhomeComponent,canActivate:[AuthGuard]},
+  {path:'footer',component:FooterComponent}
 ];
 
 @NgModule({

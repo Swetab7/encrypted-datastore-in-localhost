@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Router} from '@angular/router';
+import { Router} from '@angular/router';
 import { UserserviceService } from './userservice.service';
 
 @Injectable({
@@ -24,5 +24,9 @@ export class AuthService {
     localStorage.removeItem("LoggedInUser");
     this.myRoute.navigate(["login"]);
   }
+
+  // getCurrentUser(){
+  //   return localStorage.getItem('LoggedInUser'.USER_DETAILS);
+  // }
 
 }
