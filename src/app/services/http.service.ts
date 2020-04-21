@@ -39,4 +39,25 @@ export class HttpService {
     const url='http://139.59.55.24/api/v1/categories';
     return this.HttpClient.get(url,{ headers: new HttpHeaders().set('Authorization',"Bearer "+localStorage.getItem("LoggedInUser"))});
   }
+
+  getsubCategories(body: object = {}):Observable<any> 
+  {
+    let httpParams = new HttpParams();
+    const url='http://139.59.55.24/api/v1/subcategories';
+    if (body && Object.keys(body).length) {
+      for (const key in body) {
+        if (body.hasOwnProperty(key)) {
+          if (Array.isArray(body[key])) {
+            for (let i = 0, len = body[key].length; i < len; i++) {
+              httpParams = httpParams.append(`${key}`, body[key][i]);
+            }
+          } else {
+            httpParams = httpParams.set(key, body[key]);
+          }
+        }
+      }
+    }
+    return this.HttpClient
+      .get(url, { params: httpParams });
+  }
 }

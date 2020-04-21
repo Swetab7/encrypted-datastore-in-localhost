@@ -9,6 +9,7 @@ import { HeaderComponent } from './component/shared/header/header.component';
 import { FooterComponent } from './component/shared/footer/footer.component';
 import { HomeComponent } from './component/shared/home/home.component';
 import { DashboardComponent } from './component/shared/dashboard/dashboard.component';
+import { SubcategoryComponent } from './component/shared/dashboard/subcategory/subcategory.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path:'login',component: LoginComponent },
   {path:'signup',component: SignupComponent},
   {path:'userhome',component:UserhomeComponent,canActivate:[AuthGuard]},
-  {path:'footer',component:FooterComponent}
+  {path:'footer',component:FooterComponent},
+  {path:'subcategory/:cid',component:SubcategoryComponent}
 ];
 
 @NgModule({

@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
   divisions;
   userDetail;
   categories: any = [];
+  category:any=[];
   constructor(private http:HttpService,
     private auth:AuthService,
     private router:Router,
@@ -52,10 +53,16 @@ export class DashboardComponent implements OnInit {
    this.http.getCategory().subscribe(
        res=>{
          console.log(res);
-         this.categories = [...this.categories, ...res.data.categories];
+          // this.categories = [...this.categories, ...res.data.categories];
+          this.categories = [ ...res.data.categories];
        }
      )
    
+  }
+
+  openSubCategory(category){
+    console.log(category);
+    this.router.navigate(["/subcategory",category.id]); 
   }
 
 
