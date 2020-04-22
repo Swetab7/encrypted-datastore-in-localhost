@@ -3,6 +3,7 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 import { UserserviceService } from 'src/app/services/userservice.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { LocalstorageService } from 'src/app/services/localstorage.service';
 
 @Component({
   selector: 'app-userhome',
@@ -11,7 +12,9 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class UserhomeComponent implements OnInit {
  
-  constructor(private userservice:UserserviceService,private auth:AuthService) { }
+  constructor(private userservice:UserserviceService,
+    private auth:AuthService,
+    private local:LocalstorageService) { }
   rUser;
   edit_btn= true;
   updateForm:any;
@@ -20,10 +23,8 @@ export class UserhomeComponent implements OnInit {
   file;
 
   ngOnInit() {
-    this.rUser=this.userservice.currentUser();
-    
+    this.rUser=this.local.getItem('userDetail');
     this.imageUrl= this.setUrl();
-    // console.log(this.rUser);
     this.updateForm=new FormGroup({
       first_name:new FormControl('',Validators.required),
       last_name:new FormControl('',Validators.required),
@@ -38,7 +39,7 @@ export class UserhomeComponent implements OnInit {
 
   onEdit(){
     this.edit_btn=false;
-    this.rUser=this.userservice.currentUser();
+    this.rUser=this.local.getItem('userDetail');
     this.updateForm.patchValue({
       first_name:this.rUser.first_name,
       last_name:this.rUser.last_name,

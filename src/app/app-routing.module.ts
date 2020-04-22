@@ -8,11 +8,11 @@ import { UserhomeComponent } from './component/user/userhome/userhome.component'
 import { HeaderComponent } from './component/shared/header/header.component';
 import { FooterComponent } from './component/shared/footer/footer.component';
 import { HomeComponent } from './component/shared/home/home.component';
-import { DashboardComponent } from './component/shared/dashboard/dashboard.component';
-import { SubcategoryComponent } from './component/shared/dashboard/subcategory/subcategory.component';
-import { ProductsComponent } from './component/shared/dashboard/products/products.component';
-import { ProductDetailComponent } from './component/shared/dashboard/product-detail/product-detail.component';
-
+import { DashboardComponent } from './component/shop/dashboard/dashboard.component';
+import { SubcategoryComponent } from './component/shop/subcategory/subcategory.component';
+import { ProductsComponent } from './component/shop/products/products.component';
+import { ProductDetailComponent } from './component/shop/product-detail/product-detail.component';
+import { CartComponent } from './component/shop/cart/cart.component';
 
 const routes: Routes = [
   {path:'home',component:HomeComponent},
@@ -24,7 +24,8 @@ const routes: Routes = [
   {path:'footer',component:FooterComponent},
   {path:'subcategory/:cid',component:SubcategoryComponent},
   {path:'products/:subcategoryId',component: ProductsComponent},
-  {path:'product/:productId',component: ProductDetailComponent}
+  {path:'product_Detail/:productId',component: ProductDetailComponent},
+  {path:'cart',component:CartComponent}
 
 ];
 

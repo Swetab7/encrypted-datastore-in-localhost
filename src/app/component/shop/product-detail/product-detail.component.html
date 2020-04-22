@@ -1,0 +1,17 @@
+<div class="container">
+<div class="row">
+
+  <div class="col-sm-4" *ngIf="productDetails" >
+    <div class="card">
+     <img src="{{productDetails.images[0].avatar_url || 'https://previews.123rf.com/images/martialred/martialred1608/martialred160800018/61263271-user-account-profile-circle-flat-icon-for-apps-and-websites.jpg'}}"
+       class="card-img-top image" alt="abcd">
+        <div class="card-body">
+          <h5 class="card-title">{{productDetails.name}}</h5>
+          <p class="card-text">{{productDetails.itemdescription}}</p>
+          <a class="btn btn-primary">CART</a>
+          <a class="btn btn-primary">BUY</a>
+        </div>
+    </div>
+  </div>
+</div>
+</div>

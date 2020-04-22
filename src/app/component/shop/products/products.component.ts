@@ -17,7 +17,6 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     this.subcategoryId = this.route.snapshot.paramMap.get('subcategoryId');
-    console.log(this.subcategoryId);
     this.getAllProducts();
   }
 
@@ -26,13 +25,10 @@ export class ProductsComponent implements OnInit {
     .subscribe((res: any) => {
         this.category = res.data.category;
         this.products = res.data.item_masters;
-       console.log(this.category);
-       console.log(this.products);
     });
   }
 
   showProduct(product){
-    localStorage.setItem('product',product);
-    this.router.navigate(['/product',product.id]);
+    this.router.navigate(['/product_Detail',product.id]);  
   }
 }

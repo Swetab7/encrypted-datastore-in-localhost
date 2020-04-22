@@ -6,7 +6,7 @@
     </div>
 
     <ul class="nav navbar-nav navbar-right" >
-      <li class="active" a routerLink="/home"><a>Home</a></li>
+      <li class="active" routerLink="/home"><a>Home</a></li>
       <li><a routerLink="/dashboard">Dashboard</a></li>
 
       <li class="dropdown" *ngIf="!auth.isLoggedIn()"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -28,9 +28,21 @@
       </li>
 
       <li><a *ngIf="auth.isLoggedIn()" routerLink="/userhome">UserHome</a></li>
-      <button class="btn btn-danger navbar-btn" type="submit" 
-      *ngIf="auth.isLoggedIn()" (click)="auth.logout()">logout</button>
+     
+      <li><a class="btn btn-success btn-sm ml-3" 
+             *ngIf="auth.isLoggedIn()" routerLink="/cart" >
+            <i class="fa fa-shopping-cart"></i> 
+            Cart
+            <span class="badge badge-light">0</span>
+          </a>
+      </li>
 
+      <li>
+        <a class="btn btn-success btn-sm ml-3" 
+          *ngIf="auth.isLoggedIn()" (click)="auth.logout()">
+          logout
+        </a>
+      </li>
     </ul>
     
   </div>

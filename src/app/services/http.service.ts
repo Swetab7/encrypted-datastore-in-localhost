@@ -40,32 +40,24 @@ export class HttpService {
     return this.HttpClient.get(url,{ headers: new HttpHeaders().set('Authorization',"Bearer "+localStorage.getItem("LoggedInUser"))});
   }
 
-  getsubCategories(body: object = {}):Observable<any> 
+  getsubCategories(category_id):Observable<any> 
   {
     let httpParams = new HttpParams();
     const url='http://139.59.55.24/api/v1/subcategories';
-    if (body && Object.keys(body).length) {
-      for (const key in body) {
-        if (body.hasOwnProperty(key)) {
-          if (Array.isArray(body[key])) {
-            for (let i = 0, len = body[key].length; i < len; i++) {
-              httpParams = httpParams.append(`${key}`, body[key][i]);
-            }
-          } else {
-            httpParams = httpParams.set(key, body[key]);
-          }
-        }
-      }
-    }
+    httpParams = httpParams.set('category_id',category_id);
     return this.HttpClient
       .get(url, { params: httpParams });
   }
 
   getAllProducts(id) {
     const url = `http://139.59.55.24/api/v1/item_masters?subcategory_id=${id}`;
-    debugger
-    // `${this.productEndpoint.ALL_PRODUCTS}?subcategory_id=${id}`;
-    return this.HttpClient.get(url,{ headers: new HttpHeaders().set('Authorization',localStorage.getItem("LoggedInUser"))});
+    return this.HttpClient.get(url,{ headers: new HttpHeaders()
+      .set('Authorization',localStorage.getItem("LoggedInUser"))});
   }
 
+  getProduct(id){
+    const url =`http://139.59.55.24/api/v1/item_masters/${id}`;
+    return this.HttpClient.get(url,{ headers: new HttpHeaders()
+      .set('Authorization',localStorage.getItem("LoggedInUser"))});
+  }
 }

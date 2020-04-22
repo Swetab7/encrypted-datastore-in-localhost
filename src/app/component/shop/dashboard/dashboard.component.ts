@@ -31,7 +31,6 @@ export class DashboardComponent implements OnInit {
     this.http.getDivision().subscribe(
       res=>{
         this.divisions = res.data.division;
-        console.log(this.divisions,);
       })
   }
 
@@ -40,28 +39,20 @@ export class DashboardComponent implements OnInit {
     formData.append('user[division]', this.selected_Division);
     this.userservice.updateUser(formData).subscribe(
       res=>{
-        console.log(res);
         this.userDetail=res.data.user;
-        console.log(this.userDetail);
         this.Category();
       }
     )
     this.division_clicked=true;
   }
-
   Category() {
    this.http.getCategory().subscribe(
        res=>{
-         console.log(res);
-          // this.categories = [...this.categories, ...res.data.categories];
-          this.categories = [ ...res.data.categories];
+          this.categories = res.data.categories;
        }
      )
-   
   }
-
   openSubCategory(category){
-    console.log(category);
     this.router.navigate(["/subcategory",category.id]); 
   }
 

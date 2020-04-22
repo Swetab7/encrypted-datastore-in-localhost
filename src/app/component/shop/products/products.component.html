@@ -3,14 +3,14 @@
 
   <div class="col-sm-4" *ngFor="let product of products">
     <div class="card">
-     <img src="{{ product.images[0] ?
-                product.images[0].avatarUrl : '../../../../assets/notfound.png'}}"
+     <img
+      src="{{product.images[0].avatar_url || 'https://previews.123rf.com/images/martialred/martialred1608/martialred160800018/61263271-user-account-profile-circle-flat-icon-for-apps-and-websites.jpg'}}"
        class="card-img-top image" alt="abcd">
         <div class="card-body">
           <h5 class="card-title">{{ product.name}}</h5>
           
           <a class="btn btn-primary" 
-          [routerLink]="showProduct(product)">product Detail</a>
+          (click)="showProduct(product)">product Detail</a>
         </div>
     </div>
   </div>

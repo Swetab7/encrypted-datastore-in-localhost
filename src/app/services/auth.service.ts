@@ -17,16 +17,12 @@ export class AuthService {
   }
   
   isLoggedIn() {
-    
     return this.getToken() !== null;
   }
   logout() {
     localStorage.removeItem("LoggedInUser");
+    localStorage.removeItem("userDetail");
     this.myRoute.navigate(["login"]);
   }
-
-  // getCurrentUser(){
-  //   return localStorage.getItem('LoggedInUser'.USER_DETAILS);
-  // }
 
 }

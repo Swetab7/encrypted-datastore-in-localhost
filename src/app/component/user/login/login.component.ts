@@ -5,7 +5,7 @@ import { NgForm } from '@angular/forms';
 
 import { AuthService} from 'src/app/services/auth.service';
 import { UserserviceService } from 'src/app/services/userservice.service';
-
+import { LocalstorageService } from 'src/app/services/localstorage.service';
 
 @Component({
   selector: 'app-login',
@@ -21,12 +21,10 @@ export class LoginComponent implements OnInit {
   constructor(private userservice:UserserviceService,
     private auth:AuthService,
     private myRoute:Router,
-    private httpService:HttpService) { }
+    private httpService:HttpService,
+    private local:LocalstorageService) { }
 	
-  ngOnInit() {
-
-
-  }
+  ngOnInit() {}
 
   formLogin(loginForm:NgForm){
 
@@ -34,13 +32,15 @@ export class LoginComponent implements OnInit {
       user: { ...loginForm.value }
      };
      this.userservice.login(params).subscribe(res => {
-       this.token=res.data.response.token;
-      this.auth.sendToken(this.token);
-      this.myRoute.navigate(['userhome']);
+     this.token=res.data.response.token;
+     this.auth.sendToken(this.token);
+     this.myRoute.navigate(['userhome']);
 
       let resUser=res.data.response.user;
-     
-      this.userservice.getUser(resUser);
+
+     this.local.setLocal(resUser);
+     this.userservice.getUser(resUser);
+     this.local.setLocal(resUser);
       
     }, error => {
         this.error=error.error.errors;

@@ -11,37 +11,28 @@ export class SubcategoryComponent implements OnInit {
   constructor(private router:Router,public route: ActivatedRoute,public http:HttpService) { }
   subCategories = [];
   category;
-  params = {
-    category_id: null,
-  }
+  category_id: any;
 
-  // const params = {
-  //     user: { ...loginForm.value }
-  //    };
   ngOnInit() {
-  	 this.getcategoryid();
+  	this.getcategoryid();
     this.getSubcategories();
-
   }
   getcategoryid(){
     const cid = this.route.snapshot.paramMap;
-    this.params.category_id =cid.get('cid'); 
-    console.log(this.params.category_id);
+    this.category_id =cid.get('cid'); 
   }
+
   getSubcategories(){
       
-  		 this.http.getsubCategories(this.params).subscribe(
+  		 this.http.getsubCategories( this.category_id).subscribe(
        res=>{
-         console.log(res);
-          // this.categories = [...this.categories, ...res.data.categories];
-          this.subCategories = [ ...res.data.subcategories];
+          this.subCategories =res.data.subcategories;
           this.category=res.data.category;
         }
      )
   }
 
   showProducts(subCategory){
-    localStorage.setItem('SUBCATEGORY',subCategory);
     this.router.navigate(['/products',subCategory.id]);
   }
 
