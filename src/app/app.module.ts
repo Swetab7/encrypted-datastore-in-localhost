@@ -16,6 +16,8 @@ import { FooterComponent } from './component/shared/footer/footer.component';
 import { HomeComponent } from './component/shared/home/home.component';
 import { DashboardComponent } from './component/shared/dashboard/dashboard.component';
 import { SubcategoryComponent } from './component/shared/dashboard/subcategory/subcategory.component';
+import { ProductsComponent } from './component/shared/dashboard/products/products.component';
+import { ProductDetailComponent } from './component/shared/dashboard/product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { SubcategoryComponent } from './component/shared/dashboard/subcategory/s
     FooterComponent,
     HomeComponent,
     DashboardComponent,
-    SubcategoryComponent,   
+    SubcategoryComponent,
+    ProductsComponent,
+    ProductDetailComponent,   
   ],
   imports: [
     BrowserModule,

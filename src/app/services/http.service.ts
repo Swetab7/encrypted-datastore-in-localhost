@@ -60,4 +60,12 @@ export class HttpService {
     return this.HttpClient
       .get(url, { params: httpParams });
   }
+
+  getAllProducts(id) {
+    const url = `http://139.59.55.24/api/v1/item_masters?subcategory_id=${id}`;
+    debugger
+    // `${this.productEndpoint.ALL_PRODUCTS}?subcategory_id=${id}`;
+    return this.HttpClient.get(url,{ headers: new HttpHeaders().set('Authorization',localStorage.getItem("LoggedInUser"))});
+  }
+
 }

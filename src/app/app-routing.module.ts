@@ -10,6 +10,8 @@ import { FooterComponent } from './component/shared/footer/footer.component';
 import { HomeComponent } from './component/shared/home/home.component';
 import { DashboardComponent } from './component/shared/dashboard/dashboard.component';
 import { SubcategoryComponent } from './component/shared/dashboard/subcategory/subcategory.component';
+import { ProductsComponent } from './component/shared/dashboard/products/products.component';
+import { ProductDetailComponent } from './component/shared/dashboard/product-detail/product-detail.component';
 
 
 const routes: Routes = [
@@ -20,7 +22,10 @@ const routes: Routes = [
   {path:'signup',component: SignupComponent},
   {path:'userhome',component:UserhomeComponent,canActivate:[AuthGuard]},
   {path:'footer',component:FooterComponent},
-  {path:'subcategory/:cid',component:SubcategoryComponent}
+  {path:'subcategory/:cid',component:SubcategoryComponent},
+  {path:'products/:subcategoryId',component: ProductsComponent},
+  {path:'product/:productId',component: ProductDetailComponent}
+
 ];
 
 @NgModule({

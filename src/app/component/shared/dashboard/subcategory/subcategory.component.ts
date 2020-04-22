@@ -40,4 +40,9 @@ export class SubcategoryComponent implements OnInit {
      )
   }
 
+  showProducts(subCategory){
+    localStorage.setItem('SUBCATEGORY',subCategory);
+    this.router.navigate(['/products',subCategory.id]);
+  }
+
 }
