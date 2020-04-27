@@ -2,14 +2,15 @@
   <div class="container-fluid">
 
     <div class="navbar-header">
-      <a class="navbar-brand">The Fashion Shop</a>
+      <a class="navbar-brand">The Shop</a>
     </div>
 
     <ul class="nav navbar-nav navbar-right" >
-      <li class="active" routerLink="/home"><a>Home</a></li>
+      <li><a class="active" routerLink="/home">Home</a></li>
       <li><a routerLink="/dashboard">Dashboard</a></li>
 
-      <li class="dropdown" *ngIf="!auth.isLoggedIn()"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
+      <li class="dropdown" *ngIf="!auth.isLoggedIn()">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
         User<span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li>

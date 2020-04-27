@@ -12,13 +12,12 @@ export class LocalstorageService {
   decode(value) {
     return atob(value);
   }
-  setLocal(rUser){
-    console.log(rUser);
-    this.setUser("userDetail",rUser)
+  setLocal(value){
+    this.set_local("userDetail",value);
   }
-  setUser(key,rUser) {
-    const r_User = this.encode(JSON.stringify(rUser));
-    localStorage.setItem(key,r_User);
+  set_local(key,value) {
+    const L_value = this.encode(JSON.stringify(value));
+    localStorage.setItem(key,L_value);
   }
   getItem(key) {
      return window.localStorage.getItem(key) ? JSON.parse

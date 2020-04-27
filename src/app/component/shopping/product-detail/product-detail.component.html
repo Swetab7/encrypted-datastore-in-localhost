@@ -7,8 +7,8 @@
        class="card-img-top image" alt="abcd">
         <div class="card-body">
           <h5 class="card-title">{{productDetails.name}}</h5>
-          <p class="card-text">{{productDetails.itemdescription}}</p>
-          <a class="btn btn-primary">CART</a>
+          <p class="card-text">Price: {{productDetails.price}} Rs.</p>
+          <a class="btn btn-primary" (click)="addToCart(productDetails)">CART</a>
           <a class="btn btn-primary">BUY</a>
         </div>
     </div>

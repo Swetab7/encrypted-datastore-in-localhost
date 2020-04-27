@@ -25,7 +25,9 @@ export class HttpService {
   updateUser(body: object = {}): Observable<any> {
 
     const url ='http://139.59.55.24/api/v1/users/update_profile';
-    return this.HttpClient.patch(url,body,{ headers: new HttpHeaders().set('Authorization',"Bearer "+localStorage.getItem("LoggedInUser"))});
+    return this.HttpClient.patch(url,body,
+        {headers: new HttpHeaders()
+        .set('Authorization',"Bearer "+localStorage.getItem("LoggedInUser"))});
   }
 
   getDivision():Observable<any> 
@@ -37,7 +39,8 @@ export class HttpService {
   getCategory():Observable<any> 
   {
     const url='http://139.59.55.24/api/v1/categories';
-    return this.HttpClient.get(url,{ headers: new HttpHeaders().set('Authorization',"Bearer "+localStorage.getItem("LoggedInUser"))});
+    return this.HttpClient.get(url,{ headers: new HttpHeaders().
+      set('Authorization',"Bearer "+localStorage.getItem("LoggedInUser"))});
   }
 
   getsubCategories(category_id):Observable<any> 
@@ -59,5 +62,19 @@ export class HttpService {
     const url =`http://139.59.55.24/api/v1/item_masters/${id}`;
     return this.HttpClient.get(url,{ headers: new HttpHeaders()
       .set('Authorization',localStorage.getItem("LoggedInUser"))});
+  }
+
+  addToCart(body: object = {}){
+    const url='http://139.59.55.24/api/v1/shopping_carts/add_order_items'
+    return this.HttpClient.patch(url,body,
+        {headers: new HttpHeaders()
+        .set('Authorization',"Bearer "+localStorage.getItem("LoggedInUser"))});
+  
+  }
+
+  getCartItem(){
+    const url ='http://139.59.55.24/api/v1/shopping_carts/show_current';
+    return this.HttpClient.get(url,{ headers: new HttpHeaders()
+      .set('Authorization',"Bearer "+localStorage.getItem("LoggedInUser"))});
   }
 }

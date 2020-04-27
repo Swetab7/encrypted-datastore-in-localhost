@@ -14,11 +14,11 @@ import { MatchPasswordDirective } from './directives/match-password.directive';
 import { HeaderComponent } from './component/shared/header/header.component';
 import { FooterComponent } from './component/shared/footer/footer.component';
 import { HomeComponent } from './component/shared/home/home.component';
-import { DashboardComponent } from './component/shop/dashboard/dashboard.component';
-import { SubcategoryComponent } from './component/shop/subcategory/subcategory.component';
-import { ProductsComponent } from './component/shop/products/products.component';
-import { ProductDetailComponent } from './component/shop/product-detail/product-detail.component';
-import { CartComponent } from './component/shop/cart/cart.component';
+import { DashboardComponent } from './component/shopping/dashboard/dashboard.component';
+import { SubcategoryComponent } from './component/shopping/subcategory/subcategory.component';
+import { ProductsComponent } from './component/shopping/products/products.component';
+import { ProductDetailComponent } from './component/shopping/product-detail/product-detail.component';
+import { CartComponent } from './component/shopping/cart/cart.component';
 
 @NgModule({
   declarations: [
